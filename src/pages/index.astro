@@ -22,7 +22,7 @@ const posts = (await getCollection("blog")).sort(
         posts.map((post) => (
           <li class="group relative">
             <a
-              href={`/${post.id}/`}
+              href={`${import.meta.env.BASE_URL}${post.id}/`}
               class="block p-6 border-l-4 border-gray-200 hover:border-gray-800 hover:bg-gray-100 transition-all duration-300 hover:translate-x-2"
             >
               <div class="flex flex-col gap-3">
