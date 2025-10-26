@@ -9,13 +9,60 @@ const posts = (await getCollection("blog")).sort(
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <section>
-    <ul>
+  <section class="max-w-4xl mx-auto px-6 py-8">
+    <div class="mb-12">
+      <h1 class="text-5xl font-light mb-3">Articles</h1>
+      <div class="h-1 w-24 bg-gray-500"></div>
+    </div>
+
+    <ul class="space-y-8">
       {
         posts.map((post) => (
-          <li>
-            <a href={`/${post.id}/`}>
-              <h4 class="title">{post.data.title}</h4>
+          <li class="group relative">
+            <a
+              href={`/${post.id}/`}
+              class="block p-6 border-l-4 border-gray-200 hover:border-gray-800 hover:bg-gray-100 transition-all duration-300 hover:translate-x-2"
+            >
+              <div class="flex flex-col gap-3">
+                <time
+                  datetime={post.data.pubDate.toISOString()}
+                  class="text-xs font-medium tracking-wider uppercase text-gray-500 group-hover:text-gray-700 transition-colors"
+                >
+                  {new Date(post.data.pubDate).toLocaleDateString("ja-JP", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
+
+                <h2 class="text-2xl font-semibold tracking-tight text-gray-900 group-hover:text-gray-600 transition-colors leading-tight">
+                  {post.data.title}
+                </h2>
+
+                {post.data.description && (
+                  <p class="text-sm text-gray-600 leading-relaxed line-clamp-2">
+                    {post.data.description}
+                  </p>
+                )}
+
+                <div class="flex items-center gap-2 text-xs text-gray-400 group-hover:text-gray-600 transition-colors">
+                  <span>続きを読む</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-3"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                    />
+                  </svg>
+                </div>
+              </div>
             </a>
           </li>
         ))
