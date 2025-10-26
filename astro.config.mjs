@@ -15,5 +15,5 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-	base: process.env.NODE_ENV === 'production' ? '/blog' : '/',
+	base: process.env.NODE_ENV === 'production' ? '/blog/' : '/',
 });
