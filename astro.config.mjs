@@ -8,12 +8,12 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://takashi145.github.io/blog/',
+  site: 'https://takashi145.github.io',
   integrations: [mdx(), sitemap()],
 
   vite: {
     plugins: [tailwindcss()],
   },
 
-	base: '/blog',
+	base: process.env.NODE_ENV === 'production' ? '/blog' : '/',
 });
